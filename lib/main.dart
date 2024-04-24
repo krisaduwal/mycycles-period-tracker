@@ -27,6 +27,7 @@ int _pageIndex = 1;
 
 var startDates = [];
 var endDates = [];
+var nextDate = [];
 Map<String, dynamic> map = {};
 Map<String, dynamic> selectedDateValue = {};
 

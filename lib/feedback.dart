@@ -27,7 +27,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
             height: 100.0,
             width: 80.0,
             child: new IconButton(
-                icon: Image.asset('assets/Menstrual-Logo.png'), onPressed: () => {}),
+                icon: Image.asset('assets/finelogo.png'), onPressed: () => {}),
           ),
         ],
         title: Text(

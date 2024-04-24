@@ -86,14 +86,14 @@ class _MyCycleState extends State<MyCycles> {
     }
   }
 
-  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay){
-    setState(() {
-      _selectedDay = null;
-      _focusedDay = focusedDay;
-      _rangeStart = start;
-      _rangeEnd = end;
-    });
-  }
+  // void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay){
+  //   setState(() {
+  //     _selectedDay = null;
+  //     _focusedDay = focusedDay;
+  //     _rangeStart = start;
+  //     _rangeEnd = end;
+  //   });
+  // }
 
   _getPeriodData() async {
     FirebaseFirestore.instance
@@ -108,8 +108,12 @@ class _MyCycleState extends State<MyCycles> {
         startDates.add(temp1);
         var temp2 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['end']);
         endDates.add(temp2);
+        var temp3 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['nextperiod']);
+        nextDate.add(temp2);
+
         print(startDates);
         print(endDates);
+        print(nextDate);
       });
     });
   }
@@ -133,6 +137,16 @@ class _MyCycleState extends State<MyCycles> {
       return null;
     }
   }
+  //
+  // _getNextDate() {
+  //   if(nextDate.length > 0) {
+  //     return nextDate[0];
+  //
+  //   }
+  //   else {
+  //     return null;
+  //   }
+  // }
 
   void logOut() async {
     await FirebaseAuth.instance.signOut();
@@ -144,7 +158,7 @@ class _MyCycleState extends State<MyCycles> {
 
   Future<void> calculateNextPeriod() async {
 
-    log("next periof is around");
+    log("next period is around");
     try {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
           .collection('periodinfo')
@@ -180,7 +194,7 @@ class _MyCycleState extends State<MyCycles> {
               height: 100.0,
               width: 80.0,
               child: new IconButton(
-                  icon: Image.asset('assets/Menstrual-Logo.png'), onPressed: () => {}),
+                  icon: Image.asset('assets/finelogo.png'), onPressed: () => {}),
             ),
           ],
           title: Text(
@@ -261,10 +275,10 @@ class _MyCycleState extends State<MyCycles> {
                     firstDay: DateTime.utc(2010, 10, 16),
                     lastDay: DateTime.utc(2030, 3, 16),
                     onDaySelected: _onDaySelected,
-                    rangeStartDay: _rangeStart,
-                    rangeSelectionMode: RangeSelectionMode.toggledOn,
-                    onRangeSelected: _onRangeSelected,
-                    rangeEndDay: _rangeEnd,
+                    // rangeStartDay: _rangeStart,
+                    // rangeSelectionMode: RangeSelectionMode.toggledOn,
+                    // onRangeSelected: _onRangeSelected,
+                    // rangeEndDay: _rangeEnd,
                     calendarStyle: CalendarStyle(
                         outsideDaysVisible: false,
                         // unavailableTextStyle: TextStyle(
@@ -352,6 +366,26 @@ class _MyCycleState extends State<MyCycles> {
                         SizedBox(height: 10,),
                         Text(nextPeriodPrediction.isNotEmpty ? nextPeriodPrediction
                         : 'calculating'),
+
+                        // StreamBuilder(
+                        //     stream: FirebaseFirestore.instance.collection('periodinfo').
+                        //     snapshots(),
+                        //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        //       if (snapshot.connectionState == ConnectionState.waiting) {
+                        //         return Center(child: CircularProgressIndicator());
+                        //       } else if(snapshot.hasError) {
+                        //         return Center(child: Text('Error: ${snapshot.error}'));
+                        //       } else {
+                        //         return ListView.builder(
+                        //           itemCount: snapshot.data.docs.length,
+                        //             itemBuilder: (BuildContext context, int index) {
+                        //             DocumentSnapshot document = snapshot.data() as Map<String, dynamic>;
+                        //             }
+                        //         );
+                        //       }
+                        //     }
+                        // ),
+
 
 
                       ],

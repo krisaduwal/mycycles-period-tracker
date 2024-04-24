@@ -27,7 +27,7 @@ class _AddPeriodState extends State<AddPeriod> {
             height: 100.0,
             width: 80.0,
             child: new IconButton(
-                icon: Image.asset('assets/Menstrual-Logo.png'), onPressed: () => {}),
+                icon: Image.asset('assets/finelogo.png'), onPressed: () => {}),
           ),
         ],
         title: Text(
@@ -181,6 +181,7 @@ class _FormUIState extends State<FormUI> {
 
   _sendData() async {
     DateTime endDate = startDate.add(Duration(days: duration));
+    DateTime nextDate = startDate.add(Duration(days: cycleLength));
     FirebaseFirestore.instance.collection('periodinfo').add({
       "Cycle Length": cycleLength,
       "Duration": duration,
@@ -188,6 +189,7 @@ class _FormUIState extends State<FormUI> {
       "Selected Date": {
         "start": formatter.format(startDate),
         "end": formatter.format(endDate),
+        "next": formatter.format(nextDate),
       }
     }).then((value) {
       print(value.id);

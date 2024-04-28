@@ -18,6 +18,8 @@ class _LogInState extends State<LogIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  var obscureText = true;
+
   void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
@@ -78,7 +80,11 @@ class _LogInState extends State<LogIn> {
                   TextField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      labelText: "Email Address"
+                      hintText: "Email Address",
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: Colors.purple,
+                      )
                     ),
                   ),
 
@@ -86,8 +92,28 @@ class _LogInState extends State<LogIn> {
 
                   TextField(
                     controller: passwordController,
+                    obscureText: obscureText,
                     decoration: InputDecoration(
-                      labelText: "Password"
+                      hintText: "Password",
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.purple,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                        child: obscureText ? const Icon(
+                          Icons.visibility_off_outlined,
+                          color: Colors.purple,
+                        )
+                        : const Icon(
+                          Icons.visibility_outlined,
+                          color: Colors.purple,
+                        )
+                      )
                     ),
                   ),
 
@@ -114,7 +140,14 @@ class _LogInState extends State<LogIn> {
                         ));
                       },
                     child: Text("Don't have an account? Create one"),
-                  )
+                  ),
+                  Image(
+                      image: AssetImage('assets/group1.png'), fit: BoxFit.cover),
+                  Text("From women, for women", style: TextStyle(
+                      fontFamily: 'Allura',
+                      fontSize: 26,
+                      color: Colors.purple.shade400
+                  ),)
                 ],
               ),
             )

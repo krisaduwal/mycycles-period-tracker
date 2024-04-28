@@ -86,6 +86,8 @@ class _AboutUsState extends State<AboutUs> {
 
 
               children: [
+                Image(
+                    image: AssetImage('assets/woman1.png'), fit: BoxFit.cover),
                 SingleChildScrollView(
                   child: Column(
                     children: [

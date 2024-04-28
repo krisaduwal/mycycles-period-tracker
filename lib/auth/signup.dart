@@ -15,9 +15,12 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController cPasswordController = TextEditingController();
+
+  var obscureText = true;
 
   void createAccount() async {
     String email = emailController.text.trim();
@@ -84,7 +87,11 @@ class _SignUpState extends State<SignUp> {
                   TextField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      labelText: "Email Address"
+                      hintText: "Email Address",
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: Colors.purple,
+                      )
                     ),
                   ),
 
@@ -92,8 +99,28 @@ class _SignUpState extends State<SignUp> {
 
                   TextField(
                     controller: passwordController,
+                    obscureText: obscureText,
                     decoration: InputDecoration(
-                      labelText: "Password"
+                      hintText: "Password",
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.purple,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                        child: obscureText ? const Icon(
+                          Icons.visibility_off_outlined,
+                          color: Colors.purple,
+                        )
+                        : const Icon(
+                          Icons.visibility_outlined,
+                          color: Colors.purple,
+                        )
+                      )
                     ),
                   ),
 
@@ -101,8 +128,28 @@ class _SignUpState extends State<SignUp> {
 
                   TextField(
                     controller: cPasswordController,
+                    obscureText: obscureText,
                     decoration: InputDecoration(
-                      labelText: "confirm password"
+                      hintText: "confirm password",
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.purple,
+                      ),
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                obscureText = !obscureText;
+                              });
+                            },
+                            child: obscureText ? const Icon(
+                              Icons.visibility_off_outlined,
+                              color: Colors.purple,
+                            )
+                                : const Icon(
+                              Icons.visibility_outlined,
+                              color: Colors.purple,
+                            )
+                        )
                     ),
                   ),
 
@@ -125,6 +172,13 @@ class _SignUpState extends State<SignUp> {
 
                     child: Text("Already have an account? Log In"),
                   ),
+                  Image(
+                      image: AssetImage('assets/group1.png'), fit: BoxFit.cover),
+                  Text("From women, for women", style: TextStyle(
+                    fontFamily: 'Allura',
+                    fontSize: 26,
+                    color: Colors.purple.shade400
+                  ),)
 
 
 

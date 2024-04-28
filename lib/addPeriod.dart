@@ -199,8 +199,8 @@ class _FormUIState extends State<FormUI> {
         content: Text('Your Period Info was addded!',
             textAlign: TextAlign.center,
             style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.pink[50], fontFamily: 'Poppins')),
-        backgroundColor: Colors.purple.shade100,
+                TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Poppins')),
+        backgroundColor: Colors.purple.shade300,
       );
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);

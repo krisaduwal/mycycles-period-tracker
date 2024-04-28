@@ -18,6 +18,12 @@ import 'main.dart';
 import 'package:contactus/contactus.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+var valueArray = [];
+var dateArray = [];
+Map<String, dynamic> map = {};
+String value = '';
+String date = '';
+
 const magenta = const Color(0x8e3a59);
 void main() async {
   runApp(
@@ -66,7 +72,7 @@ class _AboutUsState extends State<AboutUs> {
             ),
           ],
           title: Text(
-            "About Us",
+            "Analytics",
             style: TextStyle(
               fontFamily: 'Allura',
               fontSize: 30,
@@ -91,56 +97,47 @@ class _AboutUsState extends State<AboutUs> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Divider(),
-                                ContactUs(
-                                  companyName: "Krisha Duwal",
-                                  textColor: Colors.white,
-                                  textFont: 'Poppins',
-                                  cardColor: Colors.purple.shade200,
-                                  companyFontSize: 30,
-                                  companyColor: Colors.purple.shade200,
-                                  taglineColor: Colors.purple.shade200,
-                                  taglineFont: 'Poppins',
-                                  email: "duwalkrisha35@gmail.com",
-                                  phoneNumber: '+977-9865456185',
-                                  taglineFontWeight: FontWeight.normal,
-                                  logo: AssetImage('assets/aditi.jpeg'),
-                                  tagLine: " Student, KIST College ",
-                                  dividerColor: Colors.black38,
-                                ),
+                                // ContactUs(
+                                //   companyName: "Krisha Duwal",
+                                //   textColor: Colors.white,
+                                //   textFont: 'Poppins',
+                                //   cardColor: Colors.purple.shade200,
+                                //   companyFontSize: 30,
+                                //   companyColor: Colors.purple.shade200,
+                                //   taglineColor: Colors.purple.shade200,
+                                //   taglineFont: 'Poppins',
+                                //   email: "duwalkrisha35@gmail.com",
+                                //   phoneNumber: '+977-9865456185',
+                                //   taglineFontWeight: FontWeight.normal,
+                                //   logo: AssetImage('assets/aditi.jpeg'),
+                                //   tagLine: " Student, KIST College ",
+                                //   dividerColor: Colors.black38,
+                                // ),
+                                TextButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(Colors.purple.shade100)),
+                                    onPressed: () {
+                                      FirebaseFirestore.instance
+                                          .collection('periodinfo')
+                                          .get()
+                                          .then((querySnapshot) {
+                                        querySnapshot.docs.forEach((result) {
+                                          print(result.data());
+                                          map = result.data();
+                                          value = map['Value'];
+                                          valueArray.add(value);
+                                          print(valueArray);
+                                          date = map['Date'];
+                                          dateArray.add(date);
+                                          print(dateArray);
+                                        });
+                                      });
+                                    },
+                                    child: Text('My analytics',
+                                        style: TextStyle(color: Colors.black, fontSize: 30, fontFamily: 'Poppins'))),
                                 Divider(),
-                                ContactUs(
-                                  textFont: 'Poppins',
-                                  taglineFont: 'Poppins',
-                                  companyName: "Anam Rajdhami",
-                                  companyFontSize: 30,
-                                  textColor: Colors.white,
-                                  cardColor: Colors.purple.shade200,
-                                  companyColor: Colors.purple.shade200,
-                                  taglineColor: Colors.purple.shade200,
-                                  email: "anamrajdhami@gmail.com",
-                                  phoneNumber: '+977-9823467667',
-                                  logo: AssetImage('assets/pooja.jpeg'),
-                                  taglineFontWeight: FontWeight.normal,
-                                  tagLine: "Student, KIST College",
-                                  dividerColor: Colors.black38,
-                                ),
                                 Divider(),
-                                ContactUs(
-                                  textFont: 'Poppins',
-                                  taglineFont: 'Poppins',
-                                  companyName: "Shivani Limbu",
-                                  companyFontSize: 30,
-                                  textColor: Colors.white,
-                                  cardColor: Colors.purple.shade200,
-                                  companyColor: Colors.purple.shade200,
-                                  taglineColor: Colors.purple.shade200,
-                                  email: "shivanilimbu@gmail.com",
-                                  phoneNumber: '+977-9818534117',
-                                  logo: AssetImage('assets/pooja.jpeg'),
-                                  taglineFontWeight: FontWeight.normal,
-                                  tagLine: "Student, KIST College",
-                                  dividerColor: Colors.black38,
-                                ),
                               ]),
                         ),
 
@@ -163,7 +160,7 @@ class _AboutUsState extends State<AboutUs> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.people), label: "About Us"),
+                  icon: Icon(Icons.analytics_outlined), label: "Analytics"),
             ],
             type: BottomNavigationBarType.shifting,
             currentIndex: _pageIndex,

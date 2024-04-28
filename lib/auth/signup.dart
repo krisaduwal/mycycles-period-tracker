@@ -39,6 +39,17 @@ class _SignUpState extends State<SignUp> {
           Navigator.pop(context);
         }
         log("user signed up");
+        final snackBar = SnackBar(
+          margin: EdgeInsets.all(20),
+          behavior: SnackBarBehavior.floating,
+          content: Text('Your account has been created successfully!',
+              textAlign: TextAlign.center,
+              style:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Poppins')),
+          backgroundColor: Colors.purple.shade300,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       } on FirebaseAuthException catch(ex) {
         // if(ex.code == "weak-password") {
         //   //snackbar
@@ -55,7 +66,12 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("create an account"),
+        title: Text("create an account",
+        style: TextStyle(
+          fontFamily: 'Allura',
+          fontSize: 30
+        ),),
+
         backgroundColor: Colors.purple.shade100,
       ),
       body: SafeArea(

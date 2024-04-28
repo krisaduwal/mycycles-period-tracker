@@ -38,6 +38,17 @@ class _LogInState extends State<LogIn> {
               builder: (context) => MyCycles()
           ));
         }
+        final snackBar = SnackBar(
+          margin: EdgeInsets.all(20),
+          behavior: SnackBarBehavior.floating,
+          content: Text('Logged In!',
+              textAlign: TextAlign.center,
+              style:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Poppins')),
+          backgroundColor: Colors.purple.shade300,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       } on FirebaseAuthException catch(ex) {
         log(ex.code.toString());
       }
@@ -50,7 +61,11 @@ class _LogInState extends State<LogIn> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Login"),
+        title: Text("Login",
+        style: TextStyle(
+          fontFamily: 'Allura',
+          fontSize: 30
+        ),),
         backgroundColor: Colors.purple.shade100,
       ),
       body: SafeArea(

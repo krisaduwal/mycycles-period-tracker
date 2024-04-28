@@ -1,4 +1,5 @@
 
+import 'package:contactus/contactus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -71,151 +72,200 @@ class _CommunityState extends State<Community> {
           centerTitle: true,
           elevation: 5.0,
         ),
-        body: SingleChildScrollView(
+        body: SafeArea(
           child: new Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
 
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Divider(),
-                Text(
-                  "Get In touch With Most Recommended Gynecologists",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.normal),
-                ),
-                Divider(),
-                Material(
-                  child: ListTile(
-                    trailing: CircleAvatar(
-                      backgroundImage: AssetImage('assets/user1.jpg'),
-                      radius: 30,
-                      child: GestureDetector(onTap: () {}),
-                    ),
-                    tileColor: Colors.purple.shade100?.withOpacity(0.6),
-                    leading: Icon(
-                      Icons.enhanced_encryption_outlined,
-                      color: Colors.purple.shade400,
-                      size: 40,
-                    ),
-                    title: (Text(
-                      "Doctor 1:",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          fontFamily: 'Poppins'),
-                    )),
-                    subtitle: (Text(
-                      "Country: Nepal \nPhone Number: 999999999 \nGender: Female \nemail: xyz@gmail.com",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Poppins'),
-                    )),
+            child: SingleChildScrollView(
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Divider(),
+                  Text(
+                    "Get In touch With Most Recommended Gynecologists",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.normal),
                   ),
-                ),
-                Divider(),
-                Divider(),
-                Material(
-                  child: ListTile(
-                    trailing: CircleAvatar(
-                      backgroundImage: AssetImage('assets/user2.jpg'),
-                      radius: 30,
-                      child: GestureDetector(onTap: () {}),
-                    ),
-                    tileColor: Colors.purple.shade100?.withOpacity(0.6),
-                    leading: Icon(
-                      Icons.enhanced_encryption_outlined,
-                      color: Colors.purple.shade400,
-                      size: 40,
-                    ),
-                    title: (Text(
-                      "Doctor 2:",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          fontFamily: 'Poppins'),
-                    )),
-                    subtitle: (Text(
-                      "Country: Nepal \nPhone Number: 9988888999 \nGender: Male \nemail: abc@gmail.com",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Poppins'),
-                    )),
+                  Divider(),
+                  // Material(
+                  //   child: ListTile(
+                  //     trailing: CircleAvatar(
+                  //       backgroundImage: AssetImage('assets/user1.jpg'),
+                  //       radius: 30,
+                  //       child: GestureDetector(onTap: () {}),
+                  //     ),
+                  //     tileColor: Colors.purple.shade100?.withOpacity(0.6),
+                  //     leading: Icon(
+                  //       Icons.enhanced_encryption_outlined,
+                  //       color: Colors.purple.shade400,
+                  //       size: 40,
+                  //     ),
+                  //     title: (Text(
+                  //       "Doctor 1:",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 20,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //     subtitle: (Text(
+                  //       "Country: Nepal \nPhone Number: 999999999 \nGender: Female \nemail: xyz@gmail.com",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: 15,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //   ),
+                  // ),
+                  ContactUs(
+                    companyName: "Krisha Duwal",
+                    textColor: Colors.white,
+                    textFont: 'Poppins',
+                    cardColor: Colors.purple.shade200,
+                    companyFontSize: 30,
+                    companyColor: Colors.purple.shade200,
+                    taglineColor: Colors.purple.shade200,
+                    taglineFont: 'Poppins',
+                    email: "duwalkrisha35@gmail.com",
+                    phoneNumber: '+977-9865456185',
+                    taglineFontWeight: FontWeight.normal,
+                    logo: AssetImage('assets/user1.jpg'),
+                    tagLine: "Gynae, KIST hospital",
+                    dividerColor: Colors.black38,
                   ),
-                ),
-                Divider(),
-                Divider(),
-                Material(
-                  child: ListTile(
-                    trailing: CircleAvatar(
-                      backgroundImage: AssetImage('assets/user1.jpg'),
-                      radius: 30,
-                      child: GestureDetector(onTap: () {}),
-                    ),
-                    tileColor: Colors.purple.shade100?.withOpacity(0.6),
-                    leading: Icon(
-                      Icons.enhanced_encryption_outlined,
-                      color: Colors.purple.shade400,
-                      size: 40,
-                    ),
-                    title: (Text(
-                      "Doctor 3:",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          fontFamily: 'Poppins'),
-                    )),
-                    subtitle: (Text(
-                      "Country: Nepal \nPhone Number: 999999999 \nGender: Female \nemail: xyz@gmail.com",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontFamily: 'Poppins'),
-                    )),
+                  Divider(),
+                  ContactUs(
+                    companyName: "Anushka Shrestha",
+                    textColor: Colors.white,
+                    textFont: 'Poppins',
+                    cardColor: Colors.purple.shade200,
+                    companyFontSize: 30,
+                    companyColor: Colors.purple.shade200,
+                    taglineColor: Colors.purple.shade200,
+                    taglineFont: 'Poppins',
+                    email: "anushtha35@gmail.com",
+                    phoneNumber: '+977-9865456185',
+                    taglineFontWeight: FontWeight.normal,
+                    logo: AssetImage('assets/aditi.jpeg'),
+                    tagLine: "Gynae, KIST Hospital",
+                    dividerColor: Colors.black38,
                   ),
-                ),
-                Divider(),
-                Divider(),
-                // Material(
-                //   child: ListTile(
-                //     trailing: CircleAvatar(
-                //       backgroundImage: AssetImage('assets/user2.jpg'),
-                //       radius: 30,
-                //       child: GestureDetector(onTap: () {}),
-                //     ),
-                //     tileColor: Colors.pink[900]?.withOpacity(0.6),
-                //     leading: Icon(
-                //       Icons.enhanced_encryption_sharp,
-                //       color: Colors.pink[50],
-                //       size: 40,
-                //     ),
-                //     title: (Text(
-                //       "Doctor 4:",
-                //       style: TextStyle(
-                //           color: Colors.white,
-                //           fontWeight: FontWeight.bold,
-                //           fontSize: 20,
-                //           fontFamily: 'Poppins'),
-                //     )),
-                //     subtitle: (Text(
-                //       "Country: India \nPhone Number: 9988888999 \nGender: Male \nemail: abc@gmail.com",
-                //       style: TextStyle(
-                //           color: Colors.pink[100],
-                //           fontSize: 15,
-                //           fontFamily: 'Poppins'),
-                //     )),
-                //   ),
-                // )
-              ],
+                  Divider(),
+                  // Material(
+                  //   child: ListTile(
+                  //     trailing: CircleAvatar(
+                  //       backgroundImage: AssetImage('assets/user2.jpg'),
+                  //       radius: 30,
+                  //       child: GestureDetector(onTap: () {}),
+                  //     ),
+                  //     tileColor: Colors.purple.shade100?.withOpacity(0.6),
+                  //     leading: Icon(
+                  //       Icons.enhanced_encryption_outlined,
+                  //       color: Colors.purple.shade400,
+                  //       size: 40,
+                  //     ),
+                  //     title: (Text(
+                  //       "Doctor 2:",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 20,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //     subtitle: (Text(
+                  //       "Country: Nepal \nPhone Number: 9988888999 \nGender: Male \nemail: abc@gmail.com",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: 15,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //   ),
+                  // ),
+                  Divider(),
+                  ContactUs(
+                    companyName: "Salin Maharjan",
+                    textColor: Colors.white,
+                    textFont: 'Poppins',
+                    cardColor: Colors.purple.shade200,
+                    companyFontSize: 30,
+                    companyColor: Colors.purple.shade200,
+                    taglineColor: Colors.purple.shade200,
+                    taglineFont: 'Poppins',
+                    email: "salin35@gmail.com",
+                    phoneNumber: '+977-9865456185',
+                    taglineFontWeight: FontWeight.normal,
+                    logo: AssetImage('assets/user2.jpg'),
+                    tagLine: "Nutritionist, KIST Hospital",
+                    dividerColor: Colors.black38,
+                  ),
+                  Divider(),
+                  // Material(
+                  //   child: ListTile(
+                  //     trailing: CircleAvatar(
+                  //       backgroundImage: AssetImage('assets/user1.jpg'),
+                  //       radius: 30,
+                  //       child: GestureDetector(onTap: () {}),
+                  //     ),
+                  //     tileColor: Colors.purple.shade100?.withOpacity(0.6),
+                  //     leading: Icon(
+                  //       Icons.enhanced_encryption_outlined,
+                  //       color: Colors.purple.shade400,
+                  //       size: 40,
+                  //     ),
+                  //     title: (Text(
+                  //       "Doctor 3:",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 20,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //     subtitle: (Text(
+                  //       "Country: Nepal \nPhone Number: 999999999 \nGender: Female \nemail: xyz@gmail.com",
+                  //       style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: 15,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //   ),
+                  // ),
+                  Divider(),
+                  // Material(
+                  //   child: ListTile(
+                  //     trailing: CircleAvatar(
+                  //       backgroundImage: AssetImage('assets/user2.jpg'),
+                  //       radius: 30,
+                  //       child: GestureDetector(onTap: () {}),
+                  //     ),
+                  //     tileColor: Colors.pink[900]?.withOpacity(0.6),
+                  //     leading: Icon(
+                  //       Icons.enhanced_encryption_sharp,
+                  //       color: Colors.pink[50],
+                  //       size: 40,
+                  //     ),
+                  //     title: (Text(
+                  //       "Doctor 4:",
+                  //       style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 20,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //     subtitle: (Text(
+                  //       "Country: India \nPhone Number: 9988888999 \nGender: Male \nemail: abc@gmail.com",
+                  //       style: TextStyle(
+                  //           color: Colors.pink[100],
+                  //           fontSize: 15,
+                  //           fontFamily: 'Poppins'),
+                  //     )),
+                  //   ),
+                  // )
+                ],
+              ),
             ),
           ),
         ),
@@ -230,7 +280,7 @@ class _CommunityState extends State<Community> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.people), label: "About Us"),
+                  icon: Icon(Icons.analytics_outlined), label: "Analytics"),
             ],
             type: BottomNavigationBarType.shifting,
             currentIndex: _pageIndex,
@@ -458,7 +508,7 @@ class _CommunityState extends State<Community> {
         builder: (context) {
           return AlertDialog(
             title: Text(heading),
-            backgroundColor: Colors.pink[50],
+            backgroundColor: Colors.purple.shade50,
             content: TextField(
               onChanged: (value) {
                 setState(() {
@@ -472,12 +522,12 @@ class _CommunityState extends State<Community> {
               TextButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink[900]!),
+                      MaterialStateProperty.all<Color>(Colors.purple.shade100),
                 ),
                 child: Text(
                   'CANCEL',
                   style:
-                      TextStyle(color: Colors.pink[50], fontFamily: 'Poppins'),
+                      TextStyle(color: Colors.black, fontFamily: 'Poppins'),
                 ),
                 onPressed: () {
                   setState(() {
@@ -488,11 +538,11 @@ class _CommunityState extends State<Community> {
               TextButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.pink[900]!),
+                      MaterialStateProperty.all<Color>(Colors.purple.shade100),
                 ),
                 child: Text('SUBMIT',
                     style: TextStyle(
-                        color: Colors.pink[50], fontFamily: 'Poppins')),
+                        color: Colors.black, fontFamily: 'Poppins')),
                 onPressed: () {
                   DateTime now = new DateTime.now();
                   String dateValue = formatter.format(now);

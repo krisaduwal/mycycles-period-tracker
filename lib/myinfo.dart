@@ -125,7 +125,7 @@ class MyInfo extends StatelessWidget {
                           MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                   onPressed: () {
                     FirebaseFirestore.instance
-                        .collection(text)
+                        .collection('temperature')
                         .get()
                         .then((querySnapshot) {
                       querySnapshot.docs.forEach((result) {

@@ -40,6 +40,11 @@ class _MyCycleState extends State<MyCycles> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
 
+  var valueArray = [];
+  var dateArray = [];
+  Map<String, dynamic> map = {};
+  String value = '';
+  String date = '';
   late CalendarController _controller;
   DateFormat formatter = DateFormat('yyyy-MM-dd');
   TextEditingController _textFieldController = TextEditingController();
@@ -198,7 +203,7 @@ class _MyCycleState extends State<MyCycles> {
             ),
           ],
           title: Text(
-            "My Cycles",
+            "Naari Saathi",
             style: TextStyle(fontFamily: 'Allura', fontSize: 30),
           ),
           backgroundColor: Colors.purple.shade100,
@@ -679,7 +684,7 @@ class _MyCycleState extends State<MyCycles> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined), label: "Home"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.people_outline), label: "About Us"),
+                  icon: Icon(Icons.analytics_outlined), label: "Analytics"),
             ],
             type: BottomNavigationBarType.shifting,
             currentIndex: _pageIndex,

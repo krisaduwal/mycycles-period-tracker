@@ -173,7 +173,7 @@ class _SignUpState extends State<SignUp> {
                     child: Text("Already have an account? Log In"),
                   ),
                   Image(
-                      image: AssetImage('assets/group1.png'), fit: BoxFit.cover),
+                      image: AssetImage('assets/group1shivani123.png'), fit: BoxFit.cover),
                   Text("From women, for women", style: TextStyle(
                     fontFamily: 'Allura',
                     fontSize: 26,

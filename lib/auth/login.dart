@@ -35,6 +35,7 @@ class _LogInState extends State<LogIn> {
             email: email,
             password: password);
         if(userCredential.user != null) {
+
           Navigator.popUntil(context, (route) => route.isFirst);
           Navigator.pushReplacement( context, CupertinoPageRoute(
               builder: (context) => MyCycles()

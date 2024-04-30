@@ -15,6 +15,7 @@ import 'package:my_cycles/community.dart';
 import 'package:my_cycles/healthtips.dart';
 import 'package:my_cycles/logs.dart';
 import 'package:intl/intl.dart';
+import 'package:my_cycles/nextPeriodPrediction.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,9 +43,11 @@ class _MyCycleState extends State<MyCycles> {
 
   var valueArray = [];
   var dateArray = [];
+  Set<DateTime> _estimatedNextPeriods = {};
   Map<String, dynamic> map = {};
   String value = '';
   String date = '';
+  String nextPeriod = "";
   late CalendarController _controller;
   DateFormat formatter = DateFormat('yyyy-MM-dd');
   TextEditingController _textFieldController = TextEditingController();
@@ -80,6 +83,8 @@ class _MyCycleState extends State<MyCycles> {
     initializeFlutterFire();
     _getPeriodData();
     _selectedDay = _focusedDay;
+    print("love");
+    print(FirebaseAuth.instance.currentUser?.email);
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay){
@@ -101,24 +106,43 @@ class _MyCycleState extends State<MyCycles> {
   // }
 
   _getPeriodData() async {
+    String? user = FirebaseAuth.instance.currentUser?.email;
     FirebaseFirestore.instance
         .collection("periodinfo")
+        .where("user",isEqualTo: user)
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
+        print("hello ");
         print(result.data());
         map = result.data();
-        selectedDateValue = map['Selected Date'];
-        var temp1 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['start']);
-        startDates.add(temp1);
-        var temp2 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['end']);
-        endDates.add(temp2);
-        var temp3 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['nextperiod']);
-        nextDate.add(temp2);
+        setState(() {
+          nextPeriod = map['Selected Date']['next'];
+        });
+        DateTime date = DateTime.parse(map['Selected Date']['start']);
+        String month = date.month < 10?"0${date.month}":"${date.month}";
+        DateTime newDate = DateTime.parse("${date.year}-${month}-${date.day} 00:00:00.000Z").toUtc();
+        Set<DateTime> temp = {};
 
-        print(startDates);
-        print(endDates);
-        print(nextDate);
+        for(int i = 0 ;i < 5 ;i++)
+          {
+            newDate = newDate.add(Duration(days: map['Cycle Length']));
+            temp.add(newDate);
+          }
+        setState(() {
+          _estimatedNextPeriods = temp;
+        });
+
+        // selectedDateValue = map['Selected Date'];
+        // var temp1 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['start']);
+        // startDates.add(temp1);
+        // var temp2 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['end']);
+        // endDates.add(temp2);
+        // var temp3 = DateFormat('yyyy-MM-dd').parse(selectedDateValue['nextperiod']);
+        // nextDate.add(temp2);
+        // print(startDates);
+        // print(endDates);
+        // print(nextDate);
       });
     });
   }
@@ -277,6 +301,18 @@ class _MyCycleState extends State<MyCycles> {
                     // calendarFormat: CalendarFormat.month,
                     // weekendDays: [],
                     focusedDay: today,
+                    // eventLoader: (day){
+                    //   return _estimatedNextPeriods.contains(day) ? [] : [];
+                    // }
+                    eventLoader: (day) {
+                      print("day eta");
+                      print(day);
+                      print(_estimatedNextPeriods.contains(day));
+                      print(_estimatedNextPeriods);
+                      return _estimatedNextPeriods.contains(day)
+                          ? ["next period"]
+                          : [];
+                    },
                     firstDay: DateTime.utc(2010, 10, 16),
                     lastDay: DateTime.utc(2030, 3, 16),
                     onDaySelected: _onDaySelected,
@@ -302,6 +338,7 @@ class _MyCycleState extends State<MyCycles> {
                         //     color: Colors.pink[900],
                         //     fontSize: 20,
                         //     fontWeight: FontWeight.w900),
+
                         todayDecoration: BoxDecoration(
                           color: Colors.purple.shade100,
                           shape: BoxShape.circle,
@@ -367,10 +404,13 @@ class _MyCycleState extends State<MyCycles> {
                       children: [
 
 
-                          Text("next period: "),
+                          Text("NEXT PERIOD: "),
                         SizedBox(height: 10,),
-                        Text(nextPeriodPrediction.isNotEmpty ? nextPeriodPrediction
-                        : 'calculating'),
+                        nextPeriod ==""?CircularProgressIndicator():Text(
+                         nextPeriod, style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),),
 
                         // StreamBuilder(
                         //     stream: FirebaseFirestore.instance.collection('periodinfo').
@@ -954,9 +994,13 @@ class _MyCycleState extends State<MyCycles> {
                 onPressed: () {
                   DateTime now = new DateTime.now();
                   String dateValue = formatter.format(now);
+
+                  String? user = FirebaseAuth.instance.currentUser?.email;
+
                   FirebaseFirestore.instance.collection(collection_name).add({
                     "Value": valueText,
                     "Date": dateValue,
+                    "user": user
                   }).then((value) {
                     print(value.id);
                   }).catchError((error) => print("Failed to add data: $error"));

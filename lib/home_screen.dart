@@ -121,7 +121,14 @@ class _MyCycleState extends State<MyCycles> {
         });
         DateTime date = DateTime.parse(map['Selected Date']['start']);
         String month = date.month < 10?"0${date.month}":"${date.month}";
-        DateTime newDate = DateTime.parse("${date.year}-${month}-${date.day} 00:00:00.000Z").toUtc();
+        String day = date.day < 10?"0${date.day}":"${date.day}";
+        print("mont = " + month);
+        print("old date = " );
+        print(date.year);
+        print(date.day);
+        DateTime newDate = DateTime.parse("${date.year}-${month}-${day} 00:00:00.000Z").toUtc();
+        print("new date == " );
+        print("haha ${newDate}");
         Set<DateTime> temp = {};
 
         for(int i = 0 ;i < 5 ;i++)

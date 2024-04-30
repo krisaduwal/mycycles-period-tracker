@@ -199,7 +199,7 @@ class _MyCycleState extends State<MyCycles> {
               height: 100.0,
               width: 80.0,
               child: new IconButton(
-                  icon: Image.asset('assets/finelogo.png'), onPressed: () => {}),
+                  icon: Image.asset('assets/finallogo.png'), onPressed: () => {}),
             ),
           ],
           title: Text(

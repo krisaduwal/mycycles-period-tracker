@@ -58,7 +58,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/finelogo.png"
+  image_path: "assets/finallogo.png"
 
 
 
@@ -118,6 +118,9 @@ flutter:
     - assets/woman.png
     - assets/woman1.png
     - assets/group1.png
+    - assets/finallogo.png
+    - assets/feedback.png
+    - assets/mylog.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

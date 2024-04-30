@@ -68,7 +68,7 @@ class _AboutUsState extends State<AboutUs> {
               height: 100.0,
               width: 80.0,
               child: new IconButton(
-                  icon: Image.asset('assets/finelogo.png'), onPressed: () => {}),
+                  icon: Image.asset('assets/finallogo.png'), onPressed: () => {}),
             ),
           ],
           title: Text(
@@ -99,22 +99,7 @@ class _AboutUsState extends State<AboutUs> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Divider(),
-                                // ContactUs(
-                                //   companyName: "Krisha Duwal",
-                                //   textColor: Colors.white,
-                                //   textFont: 'Poppins',
-                                //   cardColor: Colors.purple.shade200,
-                                //   companyFontSize: 30,
-                                //   companyColor: Colors.purple.shade200,
-                                //   taglineColor: Colors.purple.shade200,
-                                //   taglineFont: 'Poppins',
-                                //   email: "duwalkrisha35@gmail.com",
-                                //   phoneNumber: '+977-9865456185',
-                                //   taglineFontWeight: FontWeight.normal,
-                                //   logo: AssetImage('assets/aditi.jpeg'),
-                                //   tagLine: " Student, KIST College ",
-                                //   dividerColor: Colors.black38,
-                                // ),
+
                                 TextButton(
                                     style: ButtonStyle(
                                         backgroundColor:
@@ -139,6 +124,125 @@ class _AboutUsState extends State<AboutUs> {
                                     child: Text('My analytics',
                                         style: TextStyle(color: Colors.black, fontSize: 30, fontFamily: 'Poppins'))),
                                 Divider(),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                  // width: 400,
+                                  height: 40,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple.shade100,
+                                      borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Row(
+                                    
+
+                                    children: [
+                                      Text("Period started at: "),
+                                      Container(
+                                        child: Text("2024-03-29"),//eta start date
+                                      )
+
+                                    ],
+
+                                  ),
+                                ),
+                                Divider(),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                  // width: 400,
+                                  height: 40,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple.shade100,
+                                      borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Row(
+
+
+                                    children: [
+                                      Text("Period end date: "),
+                                      Container(
+                                        //eta end date
+                                      )
+
+                                    ],
+
+                                  ),
+                                ),
+                                Divider(),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                  // width: 400,
+                                  height: 40,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple.shade100,
+                                      borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Row(
+
+
+                                    children: [
+                                      Text("Cycle Length: "),
+                                      Container(
+                                        //eta cycle length
+                                      )
+
+                                    ],
+
+                                  ),
+                                ),
+                                Divider(),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                  // width: 400,
+                                  height: 40,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple.shade100,
+                                      borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Row(
+
+
+                                    children: [
+                                      Text("Duration: "),
+                                      Container(
+                                        //eta duration
+                                      )
+
+                                    ],
+
+                                  ),
+                                ),
+                                Divider(),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                  // width: 400,
+                                  height: 40,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.purple.shade100,
+                                      borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Row(
+
+
+                                    children: [
+                                      Text("Flow: "),
+                                      Container(
+                                        //eta flow
+                                      )
+
+                                    ],
+
+                                  ),
+                                ),
                                 Divider(),
                               ]),
                         ),

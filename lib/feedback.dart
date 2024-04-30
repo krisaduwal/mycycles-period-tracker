@@ -39,65 +39,76 @@ class _FeedbackFormState extends State<FeedbackForm> {
         elevation: 5.0,
       ),
       body: SingleChildScrollView(
-          child: new Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                // gradient: LinearGradient(
-                //   begin: Alignment(-1.0, 0.0),
-                //   end: Alignment(1.0, 0.0),
-                //   stops: [
-                //     0.0,
-                //     0.1,
-                //     0.1,
-                //     0.2,
-                //     0.2,
-                //     0.3,
-                //     0.3,
-                //     0.4,
-                //     0.4,
-                //     0.5,
-                //     0.5,
-                //     0.6,
-                //     0.6,
-                //     0.7,
-                //     0.7,
-                //     0.8,
-                //     0.8,
-                //     0.9,
-                //     0.9,
-                //     1
-                //   ],
-                //   colors: [
-                //     Colors.pink[100]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[100]!,
-                //     Colors.pink[50]!,
-                //     Colors.pink[50]!,
-                //   ],
-                //   tileMode: TileMode.repeated,
-                // ),
-              ),
-              child: Container(
-                  child: Form(
-                // key: _key,
-                child: FormUI(),
-              )))),
+
+          child: Column(
+            children: [
+              Image(
+                  image: AssetImage('assets/feedback.png'), fit: BoxFit.cover),
+              new Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                    // gradient: LinearGradient(
+                    //   begin: Alignment(-1.0, 0.0),
+                    //   end: Alignment(1.0, 0.0),
+                    //   stops: [
+                    //     0.0,
+                    //     0.1,
+                    //     0.1,
+                    //     0.2,
+                    //     0.2,
+                    //     0.3,
+                    //     0.3,
+                    //     0.4,
+                    //     0.4,
+                    //     0.5,
+                    //     0.5,
+                    //     0.6,
+                    //     0.6,
+                    //     0.7,
+                    //     0.7,
+                    //     0.8,
+                    //     0.8,
+                    //     0.9,
+                    //     0.9,
+                    //     1
+                    //   ],
+                    //   colors: [
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[100]!,
+                    //     Colors.pink[50]!,
+                    //     Colors.pink[50]!,
+                    //   ],
+                    //   tileMode: TileMode.repeated,
+                    // ),
+                  ),
+                  child: Container(
+                      child: Form(
+                    // key: _key,
+                    child: FormUI(),
+
+                  ))),
+            ],
+          )),
+
+
+
     );
   }
 }
@@ -113,7 +124,7 @@ class _FormUIState extends State<FormUI> {
   String temp = '';
   int age = 0;
   int rate = 0;
-  String reason = 'lorem ipsum';
+  // String reason = 'lorem ipsum';
   String comments = 'shuwbjqndqscisqmcqpmxqwmxiw';
   DateTime currentDate = DateTime.now();
 
@@ -122,7 +133,7 @@ class _FormUIState extends State<FormUI> {
       "Name": name,
       "Age": age,
       "Rate": rate,
-      "Reason": reason,
+      // "Reason": reason,
       "Comments": comments,
       "Date": currentDate,
     }).then((value) {
@@ -197,8 +208,8 @@ class _FormUIState extends State<FormUI> {
                       name = temp;
                     } else if (heading == 'Age') {
                       age = int.parse(temp);
-                    } else if (heading == 'Reason') {
-                      reason = temp;
+                    // } else if (heading == 'Reason') {
+                    //   reason = temp;
                     } else if (heading == 'Comments') {
                       comments = temp;
                     } else {

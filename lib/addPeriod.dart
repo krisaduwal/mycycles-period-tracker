@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cycles/main.dart';
 import 'package:my_cycles/home_screen.dart';
@@ -144,7 +145,7 @@ class _FormUIState extends State<FormUI> {
                 ),
                 child: Text(
                   'CANCEL',
-                  style: TextStyle(color: Colors.purple.shade50, fontFamily: 'Poppins'),
+                  style: TextStyle(color: Colors.black, fontFamily: 'Poppins'),
                 ),
                 onPressed: () {
                   setState(() {
@@ -182,10 +183,20 @@ class _FormUIState extends State<FormUI> {
   _sendData() async {
     DateTime endDate = startDate.add(Duration(days: duration));
     DateTime nextDate = startDate.add(Duration(days: cycleLength));
-    FirebaseFirestore.instance.collection('periodinfo').add({
+    final dbInstance = FirebaseFirestore.instance;
+    String? user = FirebaseAuth.instance.currentUser?.email;
+    print(user);
+    QuerySnapshot querySnapshot = await dbInstance.collection('periodinfo').where("user",isEqualTo: user).get();
+    if(querySnapshot.docs.length >=1)
+      {
+        final id = querySnapshot.docs[0].id;
+        await dbInstance.collection('periodinfo').doc(id).delete();
+      }
+    dbInstance.collection('periodinfo').add({
       "Cycle Length": cycleLength,
       "Duration": duration,
       "Flow": flow,
+      "user":user,
       "Selected Date": {
         "start": formatter.format(startDate),
         "end": formatter.format(endDate),
@@ -204,6 +215,11 @@ class _FormUIState extends State<FormUI> {
       );
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      Navigator.pop(context);
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context)=>MyCycles()),
+      (Route<dynamic> route) => false,
+      );
     }).catchError((error) {
       final snackBar = SnackBar(
         margin: EdgeInsets.all(20),

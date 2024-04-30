@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_cycles/auth/signup.dart';
 import 'package:my_cycles/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -52,8 +54,9 @@ class _LogInState extends State<LogIn> {
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      } on FirebaseAuthException catch(ex) {
-        log(ex.code.toString());
+      }catch(err){
+        print("eta error");
+        print(err);
       }
       
     }

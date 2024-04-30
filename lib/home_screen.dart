@@ -916,7 +916,7 @@ class _MyCycleState extends State<MyCycles> {
                   // SizedBox(
                   //   height: 190,
                   // ),
-                  Expanded(
+                  Container(
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: ListTile(

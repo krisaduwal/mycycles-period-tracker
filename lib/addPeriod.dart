@@ -216,6 +216,10 @@ class _FormUIState extends State<FormUI> {
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       Navigator.pop(context);
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context)=>MyCycles()),
+      (Route<dynamic> route) => false,
+      );
     }).catchError((error) {
       final snackBar = SnackBar(
         margin: EdgeInsets.all(20),

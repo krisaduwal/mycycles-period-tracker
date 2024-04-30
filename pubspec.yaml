@@ -119,13 +119,10 @@ flutter:
     - assets/woman1.png
     - assets/group1.png
     - assets/finallogo.png
-<<<<<<< HEAD
     - assets/feedback.png
     - assets/mylog.png
-=======
-    - assets/mylog.png
-    - assets/feedback.png
->>>>>>> 5303294 (estimated next period marked on calendar)
+    - assets/records.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

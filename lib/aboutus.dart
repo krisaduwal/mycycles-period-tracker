@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -54,10 +55,40 @@ class _AboutUsState extends State<AboutUs> {
         builder: (BuildContext context) => _children[_currentIndex]));
   }
 
+  String startDate = '';
+  String endDate = '';
+  String cycleLength = '';
+  String duration = '';
+  String flow = '';
+
   @override
   void initState() {
     super.initState();
+    getAnalytics();
   }
+  void getAnalytics()async{
+    print("bhayena");
+    String? user= FirebaseAuth.instance.currentUser?.email;
+    print("bhayena");
+    print(user);
+    FirebaseFirestore.instance
+        .collection('periodinfo')
+        .where("user",isEqualTo: user)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        print(startDate);
+        print( result["Selected Date"]["start"]);
+        setState(() {
+          startDate = result["Selected Date"]["start"];
+          endDate = result["Selected Date"]["end"];
+          cycleLength = "${result["Cycle Length"]}";
+          duration = "${result["Duration"]}";
+          flow = "${result["Flow"]}";
+        });
+      });
+    });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +136,10 @@ class _AboutUsState extends State<AboutUs> {
                                         backgroundColor:
                                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                                     onPressed: () {
+                                      final user= FirebaseAuth.instance.currentUser?.email;
                                       FirebaseFirestore.instance
                                           .collection('periodinfo')
+                                      .where("user",isEqualTo: user)
                                           .get()
                                           .then((querySnapshot) {
                                         querySnapshot.docs.forEach((result) {
@@ -140,7 +173,7 @@ class _AboutUsState extends State<AboutUs> {
                                     children: [
                                       Text("Period started at: "),
                                       Container(
-                                        child: Text("2024-03-29"),//eta start date
+                                        child:startDate ==""?CircularProgressIndicator(): Text(startDate),//eta start date
                                       )
 
                                     ],
@@ -164,6 +197,7 @@ class _AboutUsState extends State<AboutUs> {
                                     children: [
                                       Text("Period end date: "),
                                       Container(
+                                        child:endDate ==""?CircularProgressIndicator(): Text(endDate),
                                         //eta end date
                                       )
 
@@ -188,6 +222,7 @@ class _AboutUsState extends State<AboutUs> {
                                     children: [
                                       Text("Cycle Length: "),
                                       Container(
+                                        child:cycleLength ==""?CircularProgressIndicator(): Text(cycleLength),
                                         //eta cycle length
                                       )
 
@@ -212,6 +247,7 @@ class _AboutUsState extends State<AboutUs> {
                                     children: [
                                       Text("Duration: "),
                                       Container(
+                                        child:duration ==""?CircularProgressIndicator(): Text(duration),
                                         //eta duration
                                       )
 
@@ -223,6 +259,8 @@ class _AboutUsState extends State<AboutUs> {
                                 Container(
                                   margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                   // padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+
+
                                   // width: 400,
                                   height: 40,
                                   padding: EdgeInsets.all(10),
@@ -236,6 +274,7 @@ class _AboutUsState extends State<AboutUs> {
                                     children: [
                                       Text("Flow: "),
                                       Container(
+                                        child:flow ==""?CircularProgressIndicator(): Text(flow),
                                         //eta flow
                                       )
 

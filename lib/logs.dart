@@ -1,12 +1,14 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contactus/contactus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cycles/aboutus.dart';
 import 'package:my_cycles/home_screen.dart';
 import 'package:my_cycles/community.dart';
 import 'package:my_cycles/main.dart';
+import 'package:my_cycles/showrecords.dart';
 import 'myinfo.dart';
 
 var valueArray = [];
@@ -33,6 +35,7 @@ class _LogsState extends State<Logs> {
   @override
   void initState() {
     super.initState();
+    print("log started");
   }
 
   @override
@@ -98,10 +101,14 @@ class _LogsState extends State<Logs> {
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                     onPressed: () {
+                      print("on pressed");
+                      String? user = FirebaseAuth.instance.currentUser?.email;
                       FirebaseFirestore.instance
                           .collection('temperature')
+                          .where("user",isEqualTo:user)
                           .get()
                           .then((querySnapshot) {
+                          Navigator.push(context, MaterialPageRoute(builder:(context) => ShowRecord(argument:querySnapshot.docs as List,title:"Temperature"),));
                         querySnapshot.docs.forEach((result) {
                           print(result.data());
                           map = result.data();
@@ -143,10 +150,13 @@ class _LogsState extends State<Logs> {
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                     onPressed: () {
+                      String? user = FirebaseAuth.instance.currentUser?.email;
                       FirebaseFirestore.instance
                           .collection('mood')
+                          .where("user",isEqualTo:user)
                           .get()
                           .then((querySnapshot) {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => ShowRecord(argument:querySnapshot.docs as List,title:"Mood"),));
                         querySnapshot.docs.forEach((result) {
                           print(result.data());
                           map = result.data();
@@ -186,10 +196,13 @@ class _LogsState extends State<Logs> {
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                     onPressed: () {
+                      String? user = FirebaseAuth.instance.currentUser?.email;
                       FirebaseFirestore.instance
                           .collection('weight')
+                          .where("user",isEqualTo:user)
                           .get()
                           .then((querySnapshot) {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => ShowRecord(argument:querySnapshot.docs as List,title:"Weight"),));
                         querySnapshot.docs.forEach((result) {
                           print(result.data());
                           map = result.data();
@@ -229,10 +242,13 @@ class _LogsState extends State<Logs> {
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                     onPressed: () {
+                      String? user = FirebaseAuth.instance.currentUser?.email;
                       FirebaseFirestore.instance
                           .collection('medicine')
+                          .where("user",isEqualTo:user)
                           .get()
                           .then((querySnapshot) {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => ShowRecord(argument:querySnapshot.docs as List,title:"Medicine"),));
                         querySnapshot.docs.forEach((result) {
                           print(result.data());
                           map = result.data();
@@ -253,10 +269,13 @@ class _LogsState extends State<Logs> {
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.purple.shade100)),
                     onPressed: () {
+                      String? user = FirebaseAuth.instance.currentUser?.email;
                       FirebaseFirestore.instance
                           .collection('symptoms')
+                          .where("user",isEqualTo:user)
                           .get()
                           .then((querySnapshot) {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => ShowRecord(argument:querySnapshot.docs as List,title:"Symptom:"),));
                         querySnapshot.docs.forEach((result) {
                           print(result.data());
                           map = result.data();
